@@ -122,3 +122,7 @@ html{background:#1F74C4}
 .bar .link{text-align:right}
 body{min-height:100vh}
 @media (min-width:700px) and (min-height:700px){.board{width:min(100%,50vh)}#app{padding-top:28px}}
+.maker{display:flex;align-items:center;gap:10px;margin:0 0 26px}
+.mk{width:34px;height:34px;border-radius:9px;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.04em;box-shadow:0 4px 12px rgba(13,43,78,.2);position:relative}
+.mk:after{content:"";position:absolute;left:8px;right:8px;bottom:6px;height:2px;border-radius:2px;background:var(--gold)}
+.mkt{color:#fff;font-weight:800;font-size:14px;letter-spacing:.24em}
