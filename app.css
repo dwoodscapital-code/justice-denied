@@ -120,3 +120,5 @@ html{background:#1F74C4}
 .bar #play-title{flex:1;text-align:center}
 .bar .back,.bar .link{width:56px}
 .bar .link{text-align:right}
+body{min-height:100vh}
+@media (min-width:700px) and (min-height:700px){.board{width:min(100%,50vh)}#app{padding-top:28px}}
