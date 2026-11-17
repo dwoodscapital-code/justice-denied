@@ -4,7 +4,7 @@
 
 const WIN = 30, RIGHT = 5, WRONG = -3;
 const LEVELS = [[1, "Easy"], [2, "Medium"], [3, "Advanced"]];
-const COLORS = ["#F2C14E", "#E8505B", "#3BB273", "#B07BE6", "#FF8C42", "#FFFFFF"];
+const COLORS = ["#F2C14E", "#E8505B", "#3BB273", "#B07BE6", "#FF8C42", "#5FD3E0"];
 const BOT_NAMES = ["Harriet", "Fred", "Ida", "Booker", "Mary"];
 const GAMES = {
   jd: { title: "Justice Denied?", board: "img/jd_board.jpg", spaces: 28, ringR: 0.368, ready: true },
@@ -136,7 +136,7 @@ function nextTurn(first) {
 }
 
 function handoff(p) {
-  $("#turn").innerHTML = `<div class="handoff"><div>Pass the phone to</div>
+  $("#turn").innerHTML = `<div class="handoff"><div class="over">Pass the phone to</div>
     <div class="who" style="color:${p.color}">${esc(p.name)}</div>
     <button class="big" id="b-ready">I'm ready</button></div>`;
   $("#b-ready").onclick = showCard;
@@ -153,10 +153,11 @@ function showCard() {
     : (c.type === "mc"
       ? ch.map((o, i) => `<button class="opt" data-i="${i}"><b>${letters[i]})</b><span>${esc(o)}</span></button>`).join("")
       : `<div class="two">${ch.map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join("")}</div>`);
+  const dots = `<span class="lv">${[1, 2, 3].map((k) => `<i class="${k <= c.lvl ? "on" : ""}"></i>`).join("")}</span>`;
   $("#turn").innerHTML = `<div class="card${talk ? " talk" : ""}">
-    <div class="meta"><span class="who" style="color:${p.bot ? "var(--muted)" : "var(--ink)"}">${p.name === "You" ? "Your" : esc(p.name) + "'s"} turn</span>
-    <span>${talk ? "Talk it over &middot; no points" : lvl}</span></div>
-    <div class="q">${esc(c.q)}</div>${opts}<div id="after"></div></div>`;
+    <div class="band"><span>${p.name === "You" ? "Your" : esc(p.name) + "&rsquo;s"} turn</span>
+    <span class="meta">${talk ? "Talk it over &middot; no points" : lvl + dots}</span></div>
+    <div class="body"><div class="q">${esc(c.q)}</div>${opts}<div id="after"></div></div></div>`;
   if (!p.bot) $("#turn").scrollIntoView({ behavior: "smooth", block: "nearest" });
   if (talk) {
     $("#after").innerHTML = `<button class="big" id="b-next">Done talking</button>`;
@@ -209,7 +210,7 @@ function win(p) {
   $("#win-name").textContent = p.bot ? `${p.name} wins!` : `${p.name} made it HOME!`;
   $("#win-sub").textContent = `First to ${WIN} points.`;
   const order = [...G.players].sort((a, b) => b.score - a.score);
-  $("#final").innerHTML = order.map((q) => `<li><span><span class="dot" style="display:inline-block;vertical-align:-2px;margin-right:6px;background:${q.color}"></span>${esc(q.name)}</span><span>${q.score}</span></li>`).join("");
+  $("#final").innerHTML = order.map((q) => `<li><span class="who"><span class="dot" style="background:${q.color}"></span>${esc(q.name)}</span><span>${q.score}</span></li>`).join("");
   show("s-win");
 }
 

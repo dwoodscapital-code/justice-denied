@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Justice Denied? and Alpha &amp; Omega</title>
 <meta name="theme-color" content="#2F8FE3">
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -12,16 +13,21 @@
 
   <!-- 1. pick a game -->
   <section id="s-home" class="screen on">
-    <h1 class="brand">Family History &amp; Faith Games</h1>
-    <p class="lead">Right answer +5. Wrong answer -3. First to 30 wins.</p>
+    <div class="over">The family trivia board games</div>
+    <h1 class="brand">Learn it. Play it. Pass it on.</h1>
+    <div class="rule"></div>
+    <p class="lead" style="margin-top:12px">Right answer +5. Wrong answer &minus;3. First to 30 makes it home.</p>
     <button class="game-tile jd" data-game="jd">
-      <span class="t1">JUSTICE DENIED?</span>
-      <span class="t2">Black American History</span>
+      <span class="thumb" style="background-image:url(img/jd_board.jpg)"></span>
+      <span class="tile-txt"><span class="t1">JUSTICE DENIED?</span>
+      <span class="t2">Black American history, 1619 to today</span></span>
+      <span class="chev">&rsaquo;</span>
     </button>
     <button class="game-tile ao" data-game="ao">
-      <span class="t1">ALPHA &amp; OMEGA</span>
+      <span class="thumb ao">A&Omega;</span>
+      <span class="tile-txt"><span class="t1">ALPHA &amp; OMEGA</span>
       <span class="t2">The Bible, Genesis to Revelation</span>
-      <span class="soon">Coming soon</span>
+      <span class="soon">Coming soon</span></span>
     </button>
     <button class="link" id="b-rules">How to play</button>
   </section>
@@ -35,7 +41,7 @@
       <button data-mode="pass">Pass the phone</button>
     </div>
 
-    <div id="solo-box">
+    <div id="solo-box" class="panel-w">
       <label>Your name <input id="solo-name" maxlength="14" placeholder="You"></label>
       <label>Your level <select id="solo-lvl"></select></label>
       <label>Computer players
@@ -44,10 +50,10 @@
         <select id="bot-skill"><option value="0.45">Easy</option><option value="0.65" selected>Medium</option><option value="0.85">Hard</option></select></label>
     </div>
 
-    <div id="pass-box" hidden>
+    <div id="pass-box" class="panel-w" hidden>
       <p class="hint">2 to 6 players. Each player picks their own level, so kids and grown-ups can play together.</p>
       <div id="pass-list"></div>
-      <button class="ghost" id="b-add">+ Add a player</button>
+      <button id="b-add">+ Add a player</button>
     </div>
 
     <button class="big" id="b-start">Start the game</button>
@@ -67,8 +73,9 @@
 
   <!-- 4. winner -->
   <section id="s-win" class="screen">
-    <div class="trophy">&#9733;</div>
+    <div class="over">Winner</div>
     <h2 id="win-name"></h2>
+    <div class="rule"></div>
     <p id="win-sub"></p>
     <ol id="final"></ol>
     <button class="big" id="b-again">Play again</button>
@@ -76,8 +83,8 @@
   </section>
 
   <dialog id="rules">
-    <h3>How to play</h3>
-    <ul>
+    <div class="band">How to play</div>
+    <div class="db"><ul>
       <li>Players take turns answering a card.</li>
       <li>Right answer: <b>+5 points</b>. Wrong answer: <b>-3 points</b> (your score never goes below 0).</li>
       <li>Your piece moves around the board as your score grows. <b>First to 30 points</b> makes it HOME and wins.</li>
@@ -85,7 +92,7 @@
       <li>Yellow <b>Talk It Over</b> cards have no right answer and no points. Talk about it as a family, then pass the turn.</li>
       <li>Play the computer (1 to 5 computer players), or pass one phone around for 2 to 6 people.</li>
     </ul>
-    <button class="big" id="b-rules-ok">Got it</button>
+    <button class="big" id="b-rules-ok">Got it</button></div>
   </dialog>
 </main>
 <script src="decks/justice_denied.js"></script>
